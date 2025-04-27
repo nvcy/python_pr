@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/classifier.css' %}?v={{ timestamp }}">
+       
+    
+</head>
+<body>
+     {% include 'NavBar.html' %}
+   <div class="container">
+    <section class="image-slide">
+      <h1>Image Classification</h1>
+    <img class="shownImage"  style="  height: 300px; width: 300px;" src="" alt="image for Classification">
+    </section>
+     <div class="Upload">
+       <form class="image-form" action="{% url 'result' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="label-image" for="image"> <li class="fa-solid fa-upload"></li> Upload Image </label>
+        <input type="file" name="image" id="image" accept="image/*" required>
+        <span class="image-text"></span>
+        <input type="submit" value="submit">
+       </form>
+     </div>
+      <img class="image-container" alt="" srcset="">
+    </div> 
+</body>
+<script src="{% static 'js/classifier.js' %}?v={{ timestamp }}"></script>
+</html>

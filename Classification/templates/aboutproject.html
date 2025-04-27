@@ -1,0 +1,46 @@
+<!-- templates/about.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Classage</title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="about-container">
+        <h1>About Classage</h1>
+        <p>
+            <strong>Classage</strong> is a simulation tool that mimics the behavior of an image classifier. 
+            Instead of actually performing real-time machine learning, Classage demonstrates the typical workflow 
+            of image classification to help users understand how these systems function conceptually.
+        </p>
+        <p>
+            It is designed for educational and demonstrative purposes — perfect for students, teachers, or 
+            anyone curious about how images are classified in AI systems, without needing the complex backend of real models.
+        </p>
+
+        <div class="features">
+            <h2>What Does It Simulate?</h2>
+            <ul>
+                <li>Image upload and category assignment simulation</li>
+                <li>Step-by-step visualization of the classification pipeline</li>
+                <li>Basic explanation of prediction logic</li>
+                <li>User interface mimicking real AI tools</li>
+            </ul>
+        </div>
+
+        <div class="team">
+            <h2>Why Classage?</h2>
+            <p>
+                Classage was created to provide an interactive and visual way to explore the concept of image classification 
+                without diving deep into code or machine learning models. It simplifies the learning curve and encourages 
+                experimentation.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Your Own Model</title>
+    <!-- Add timestamp for cache-busting -->
+    <link rel="stylesheet" href="{% static 'css/modelTraining.css' %}?v={{ timestamp }}">
+</head>
+<body>
+{% include 'NavBar.html' %}
+
+<div class="container">
+    <div class="header">
+        <h1>Upload Your Own Cat & Dog Images</h1>
+    </div>
+
+    <div class="upload-section">
+        <div class="drop-zone" id="catDropZone">
+            <p><strong>Drop Cat Images Here</strong> or Click to Upload</p>
+            <input type="file" id="catInput" accept="image/*" multiple class="hidden">
+            <p class="file-count" id="catCount">0 files uploaded</p>
+        </div>
+
+        <div class="drop-zone" id="dogDropZone">
+            <p><strong>Drop Dog Images Here</strong> or Click to Upload</p>
+            <input type="file" id="dogInput" accept="image/*" multiple class="hidden">
+            <p class="file-count" id="dogCount">0 files uploaded</p>
+        </div>
+    </div>
+
+    <div class="train-section">
+        <button class="train-button" id="trainButton" disabled>Train Model</button>
+    </div>
+
+    <div class="training-modal hidden" id="trainingModal">
+        <h2>Training In Progress...</h2>
+        <div class="loader"></div>
+        <p>Your model is being trained on your data. Please wait...</p>
+    </div>
+
+    <div class="success-modal hidden" id="successModal">
+        <h2>Training Complete ✅</h2>
+        <p>Your model has been trained successfully on your uploaded images.</p>
+        <a href="/classifier" class="classifier-button">Go to Classifier</a>
+    </div>
+</div>
+
+<script src="{% static 'js/modelTraining.js' %}?v={{ timestamp }}"></script>
+</body>
+</html>

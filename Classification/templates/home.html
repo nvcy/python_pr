@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?v={{ timestamp }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    {% include 'NavBar.html' %}
+ <div class="container-page">
+    <div class="head-text">
+        <p class="head-p">Begin by Training Your First Image Classification Model</p>
+        <p class="head-p">and Classifying Your Images</p>
+        <p>if you want to train the model with your data please <em><a href="{% url 'train-model' %}">click here</a></em></p>
+    </div>
+
+    <div class="container">
+        <div class="image-container">
+            <button class="previous">&laquo;</button>
+            <div class="data">
+                     {% for image in data.dogs %}
+                    <div class="image-div">
+                        <img src="{{ image }}" alt="dog Image" class="image-content {% if forloop.first %}active{% endif %}" style="width: 400px; height: 400px;">
+                    </div>
+                {% endfor %}
+                {% for image in data.cats %}
+                <div class="image-div">
+                    <img src="{{ image }}" alt="cat Image" class="image-content " style="width: 400px; height: 400px;">
+                </div>
+            {% endfor %}
+            </div>
+            <button class="next">&raquo;</button>
+        </div>
+        <button class="entrainerBtn">TRAIN MODEL</button>
+        <a class="a-classifier" data-classifier-url="{% url 'classifier' %}" href="{% url 'classifier' %}"></a>
+    </div>
+</div>
+    <script src="{% static 'js/home.js' %}?v={{ timestamp }}"  defer></script>
+    <script>
+        var classifierUrl = "{% url 'classifier' %}";
+    </script>
+</body>
+</html>

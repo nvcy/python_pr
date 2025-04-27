@@ -1,0 +1,60 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classage</title>
+    <link rel="stylesheet" href="{% static 'css/Result.css' %}?v={{ timestamp }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    {% include 'NavBar.html' %}
+<div class="container">
+    <h1>Classification Result</h1>
+
+    {% if image_url %}
+        <img src="{% static image_url %}" alt="Uploaded Image" style="width: 300px; height: 300px;">
+        <p>Cat Percentage: {{ cate_persente }}%</p>
+        <p>Dog Percentage: {{ dog_persente }}%</p>
+        <p>Other Percentage: {{ other_persente }}%</p>
+        <canvas id="myPieChart" class="pie-chart"></canvas>
+
+<script>
+
+    var catePercentage = {{ cate_persente }};
+    var dogPercentage = {{ dog_persente }};
+    var otherPercentage = {{ other_persente }};
+
+    
+    var data = {
+        labels: ['Cat', 'Dog', 'Other'],
+        datasets: [{
+            label: 'Classification Percentage',
+            data: [catePercentage, dogPercentage, otherPercentage],
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            hoverBackgroundColor: ['#FF4566', '#47A2FF', '#FFDA56']
+        }]
+    };
+
+   
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie', 
+        data: data,
+        options: {
+                        responsive: true,
+                     
+                    }
+
+    });
+</script>
+    {% else %}
+
+        <p>No image uploaded.</p>
+    {% endif %}
+</div>
+
+
+</body>
+</html>
